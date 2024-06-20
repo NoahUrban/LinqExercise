@@ -82,17 +82,17 @@ namespace LinqExercise
 
             //TODO: Print all the employees' FullName properties to the console only if their FirstName starts with a C OR an S and order this in ascending order by FirstName.
             IEnumerable<Employee> firstNameCorS =
-                employees.Where(name => name.FirstName.Contains("C") || name.FirstName.Contains("S"));
+                employees.Where(name => name.FirstName.Contains('C') || name.FirstName.Contains('S'));
 
             foreach (var name in firstNameCorS)
             {
-                Console.WriteLine(name.FirstName + " " + name.LastName);
+                Console.WriteLine(name.FullName);
             }
 
             Console.WriteLine();
             //TODO: Print all the employees' FullName and Age who are over the age 26 to the console and order this by Age first and then by FirstName in the same result.
             IEnumerable<Employee> overTwentySix =
-                employees.Where(age => age.Age > 26).OrderBy(age => age.Age).OrderBy(name => name.FirstName);
+                employees.Where(age => age.Age > 26).OrderBy(age => age.Age).ThenBy(name => name.FirstName);
 
             foreach (var i in overTwentySix)
             {
@@ -117,14 +117,7 @@ namespace LinqExercise
 
             Console.WriteLine();
             //TODO: Add an employee to the end of the list without using employees.Add()
-            Employee newEmployee = new Employee() { FirstName = "", LastName = "", Age = 24, YearsOfExperience = 0 };
-
-            employees.Append(newEmployee);
-
-            foreach (var i in employees)
-            {
-                Console.WriteLine(i.FullName);
-            }
+            employees = employees.Append(new Employee("Noah", "Urban", 24, 0)).ToList();
 
             Console.WriteLine();
 
