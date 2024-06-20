@@ -117,7 +117,9 @@ namespace LinqExercise
 
             Console.WriteLine();
             //TODO: Add an employee to the end of the list without using employees.Add()
-            employees = employees.Append(new Employee("Noah", "Urban", 24, 0)).ToList();
+            Employee newEmployee = new Employee("Noah", "Urban", 24, 0);
+
+            employees.Append(newEmployee).ToList().ForEach(x => Console.WriteLine(x.FullName));
 
             Console.WriteLine();
 
